@@ -16,7 +16,19 @@ router.get('/', (req, res) => {
 
 
 // Table Route //
-
+router.get('/table', (req, res) => {
+    Task.find({}, (err, foundTasks) => {
+        if (!err) {
+            const formattedData = foundTasks.reduce((acc, item) => {
+                acc[item.status] = acc[item.status] ? [...acc[item.status], item] : [item]
+                return acc
+            }, {})
+            res.status(200).json(formattedData)
+        }   else {
+            res.status(400).json(err)
+        };
+    });
+});
 
 // Delete Route //
 router.delete('/:id', (req, res) => {
@@ -41,6 +53,21 @@ router.post('/', (req, res) => {
             res.status(400).json(err)
         }
     });
+});
+
+
+// Update Route //
+router.put('/:id', (req, res) => {
+    const { body } = req
+
+    Task.findByIdAndUpdate(req.params.id, body, 
+        {new: true}, (err, updatedTask) => {
+            if (!err) {
+                res.status(200).json(updatedTask)
+            }   else {
+                res.status(400).json(err)
+            };
+        });
 });
 
 
