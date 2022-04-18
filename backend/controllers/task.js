@@ -31,7 +31,7 @@ router.get('/table', (req, res) => {
 });
 
 // Delete Route //
-router.delete('/:id', (req, res) => {
+router.delete('/tasks/:id', (req, res) => {
     Task.findByIdAndDelete(req.params.id, (err) => {
         if (!err) {
             res.status(200).json({message: "Deleted the task!"})

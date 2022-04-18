@@ -21,7 +21,7 @@ export default function Show() {
     return (
         <>
             <div className="showPage">
-                <Link to="/">Home</Link>
+                <Link to="/"><button className='button'>Home</button></Link>
                 <div className="taskContainer">
                     <h1>Entry: {show.entry}</h1>
                     <p>Status: {show.status}</p>
