@@ -12,13 +12,13 @@ export default function App() {
     useEffect(() => {
         (async () => {
             try {
-                const response = await axios.get(`http://localhost:3000/tasks/table/`)
+                const response = await axios.get(`http://localhost:3000/tasks/table`)
                 setTasks(response.data)
             } catch (err) {
                 console.log(err)
             }
         })()
-    }, []);
+    }, [buttonPressed]);
 
     const handleClick = async (statusChange, id) => {
         try {
@@ -35,16 +35,15 @@ export default function App() {
         }
     };
 
-    const handleSubmit = async () => {
-        try {
-            console.log("Hello")
-            const response = await axios.post(`http://localhost:3000/tasks`, {
-                entry: entry.current.value, status: "TO-DO".toLowerCase()
-            })
-        }   catch (err) {
-            console.log(err)
-        }
-    };
+    // const handleSubmit = async () => {
+    //     try {
+    //         const response = await axios.post(`http://localhost:3000/tasks/table`, {
+    //             entry: entry.current.value, status: "TO-DO".toLowerCase()
+    //         })
+    //     }   catch (err) {
+    //         console.log(err)
+    //     }
+    // };
 
     // const handleSubmit = (item) => {
     //     setTasks([{ entry: item}, ...tasks])
