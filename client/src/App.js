@@ -46,37 +46,19 @@ export default function App() {
         }
     };
 
-    // const handleSubmit = (item) => {
-    //     setTasks([{ entry: item}, ...tasks])
-    // };
-
-    // const handleDelete = async (id) => {
-    //     try {
-    //         const response = await axios.delete(`https://localhost:3000/tasks/${id}`, {})
-    //         if (response.status === 200) {
-    //             setButtonPressed(!buttonPressed)
-    //         }   else {
-    //             console.log("Something went wrong with handleDelete")
-    //         }
-    //     }   catch (err) {
-    //         console.log(err)
-    //     }
-    // };
     const handleDelete = async (id) => {
         try {
-          const response = await axios.delete(`https://localhost:3000/tasks/${id}`, {
-          })
-          if (response.status === 200) {
-            setButtonPressed(!buttonPressed)
-          } else {
-            console.log('Something went wrong')
-          }
-        } catch (err) {
-          console.log(err)
+            const response = await axios.delete(`http://localhost:3000/tasks/${id}`)
+            if (response.status === 200) {
+                setButtonPressed(!buttonPressed)
+            }   else {
+                console.log("Something went wrong with handleDelete")
+            }
+        }   catch (err) {
+            console.log(err)
         }
-      }
+    };
 
-    
     return (
         <>
             <div className="App">
@@ -97,29 +79,6 @@ export default function App() {
                                         <div className='task' key={idx}>
                                             <Link to={`/${item._id}`}>{item.entry}</Link>
                                             <div>
-                                                <button onClick={() => {handleClick("PENDING", item._id)}} className="button">Pending</button>
-                                                <button onClick={() => {handleClick("COMPLETED", item._id)}} className="button">Completed</button>
-                                                <button onClick={() => {handleDelete(item._id)}} className="button">Delete</button>
-                                            </div>
-                                        </div>
-                                    )
-                                })
-                                :
-                                ""
-                            }
-                        </div>
-                    </div>
-                    <div id="pending" className='section'>
-                        <h2>Pending</h2>
-                        <div className='list'>
-                            {
-                                tasks["PENDING"] ?
-                                tasks["PENDING"].map((item, idx) => {
-                                    return (
-                                        <div className='task' key={idx}>
-                                            <Link to={`/${item._id}`}>{item.entry}</Link>
-                                            <div>
-                                                <button onClick={() => {handleClick("TO-DO", item._id)}} className="button">To-Do</button>
                                                 <button onClick={() => {handleClick("COMPLETED", item._id)}} className="button">Completed</button>
                                                 <button onClick={() => {handleDelete(item._id)}} className="button">Delete</button>
                                             </div>
@@ -142,7 +101,6 @@ export default function App() {
                                             <Link to={`/${item._id}`}>{item.entry}</Link>
                                             <div>
                                                 <button onClick={() => {handleClick("TO-DO", item._id)}} className="button">To-Do</button>
-                                                <button onClick={() => {handleClick("PENDING", item._id)}} className="button">Pending</button>
                                                 <button onClick={() => {handleDelete(item._id)}} className="button">Delete</button>
                                             </div>
                                         </div>

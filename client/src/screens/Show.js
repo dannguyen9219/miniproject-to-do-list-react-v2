@@ -6,6 +6,7 @@ import { useParams, Link, useNavigate } from 'react-router-dom'
 export default function Show() {
     const { id } = useParams()
     const [show, setShow] = useState({})
+    const navigate = useNavigate()
     
     useEffect(() => {
         ( async () => {
@@ -16,7 +17,17 @@ export default function Show() {
                 console.log(err)
             }
         })()
-    }, [])
+    }, []);
+
+    const handleDelete = async () => {
+        try {
+            await axios.delete(`http://localhost:3000/tasks/${id}`)
+        }   catch (err) {
+            console.log(err)
+        }   finally {
+            navigate(-1)
+        }
+    };
 
     return (
         <>
@@ -25,6 +36,7 @@ export default function Show() {
                 <div className="taskContainer">
                     <h1>Entry: {show.entry}</h1>
                     <p>Status: {show.status}</p>
+                    <button onClick={handleDelete}>Delete</button>
                 </div>
             </div>
         </>
