@@ -55,7 +55,7 @@ export default function App() {
                                 })
                                 :
                                 ""
-                            };
+                            }
                         </div>
                     </div>
                     <div id="pending" className='section'>
@@ -76,7 +76,7 @@ export default function App() {
                                 })
                                 :
                                 ""
-                            };
+                            }
                         </div>
                     </div>
                     <div id="completed" className='section'>
@@ -97,7 +97,7 @@ export default function App() {
                                 })
                                 :
                                 ""
-                            };
+                            }
                         </div>
                     </div>
                 </div>
