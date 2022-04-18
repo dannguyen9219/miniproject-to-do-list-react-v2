@@ -18,7 +18,7 @@ export default function App() {
                 console.log(err)
             }
         })()
-    }, []);
+    }, [buttonPressed]);
 
     const handleClick = async (statusChange, id) => {
         try {
@@ -35,11 +35,11 @@ export default function App() {
         }
     };
 
-    const handleSubmit = async () => {
+    const handleSubmit = async (evt) => {
         try {
             console.log("Hello")
             const response = await axios.post(`http://localhost:3000/tasks`, {
-                entry: entry.current.value, status: "TO-DO".toLowerCase()
+                entry: entry.current.value, status: "TO-DO"
             })
         }   catch (err) {
             console.log(err)
@@ -50,18 +50,32 @@ export default function App() {
     //     setTasks([{ entry: item}, ...tasks])
     // };
 
+    // const handleDelete = async (id) => {
+    //     try {
+    //         const response = await axios.delete(`https://localhost:3000/tasks/${id}`, {})
+    //         if (response.status === 200) {
+    //             setButtonPressed(!buttonPressed)
+    //         }   else {
+    //             console.log("Something went wrong with handleDelete")
+    //         }
+    //     }   catch (err) {
+    //         console.log(err)
+    //     }
+    // };
     const handleDelete = async (id) => {
         try {
-            const response = await axios.delete(`https://localhost:3000/tasks/${id}`, {})
-            if (response.status === 200) {
-                setButtonPressed(!buttonPressed)
-            }   else {
-                console.log("Something went wrong with handleDelete")
-            }
-        }   catch (err) {
-            console.log(err)
+          const response = await axios.delete(`https://localhost:3000/tasks/${id}`, {
+          })
+          if (response.status === 200) {
+            setButtonPressed(!buttonPressed)
+          } else {
+            console.log('Something went wrong')
+          }
+        } catch (err) {
+          console.log(err)
         }
-    };
+      }
+
     
     return (
         <>
