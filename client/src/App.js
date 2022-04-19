@@ -7,7 +7,6 @@ export default function App() {
     const [tasks, setTasks] = useState({});
     const [buttonPressed, setButtonPressed] = useState(false);
     const entry = useRef();
-    const status = useRef();
     
     useEffect(() => {
         (async () => {
@@ -70,7 +69,7 @@ export default function App() {
                         </form>
                     </div>
                     <div id="to-do" className='section'>
-                        <h2>To-Do</h2>
+                        <h2>To-Do's</h2>
                         <div className='list'>
                             {
                                 tasks["TO-DO"] ?
